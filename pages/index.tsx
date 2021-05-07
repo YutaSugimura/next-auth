@@ -1,4 +1,5 @@
 import { signIn, signOut, useSession } from 'next-auth/client';
+import { AuthButton } from '../src/atoms/Button/authButton';
 // import styles from '../styles/Home.module.css';
 
 type Props = {
@@ -20,7 +21,7 @@ const Page: React.VFC<Props> = ({ data }) => {
           ) : (
             <>
               Not signed in <br />
-              <button onClick={() => signIn()}>Sign in</button>{' '}
+              <AuthButton label="Sign in" onClick={signIn} />
             </>
           )}
         </>

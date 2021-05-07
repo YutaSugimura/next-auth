@@ -1,12 +1,15 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-import { GenericObject } from 'next-auth/_utils';
 
 export default NextAuth({
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_ID ?? '',
       clientSecret: process.env.GITHUB_SECRET ?? '',
+    }),
+    Providers.Google({
+      clientId: process.env.GOOGLE_ID ?? '',
+      clientSecret: process.env.GOOGLE_SECRET ?? '',
     }),
   ],
   callbacks: {
@@ -17,7 +20,7 @@ export default NextAuth({
       return token;
     },
     async session(session, token) {
-      session.accessToken = (token as GenericObject).accessToken;
+      session.accessToken = token.accessToken;
       return session;
     },
   },
